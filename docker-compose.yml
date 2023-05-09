@@ -1,0 +1,19 @@
+version: '3'
+services:
+    postgres:
+        image: postgres:latest
+        environment:
+            - POSTGRES_PASSWORD=postgres
+        ports:
+            - 5000:5432
+    battery-service:
+        build: .
+        container_name: battery_service
+        environment:
+            - DJANGO_SETTINGS_MODULE=batteryService.settings
+        volumes:
+            - .:/var/www
+        ports:
+            - 8000:8000
+        depends_on:
+            - postgres
