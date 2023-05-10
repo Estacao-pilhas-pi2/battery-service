@@ -6,7 +6,7 @@ services:
             - POSTGRES_PASSWORD=postgres
         ports:
             - 5000:5432
-    battery-service:
+    battery_service:
         build: .
         container_name: battery_service
         environment:
