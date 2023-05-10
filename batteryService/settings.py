@@ -15,7 +15,10 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = ["*"]
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    'usuario',
+    'core',
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -103,14 +106,17 @@ STATIC_URL = config('STATIC_URL', default='/static/')
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
-    }
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
 }
 # AZURE_CONNECTION_STRING = config('AZURE_CONNECTION_STRING', '')
 # AZURE_CONTAINER = 'images'
 MEDIA_ROOT = 'media'
 MEDIA_URL = '/media/'
 
-# AUTH_USER_MODEL = 'usuario.usuario'
+AUTH_USER_MODEL = 'usuario.usuario'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Classes defaults utilizadas
@@ -127,5 +133,5 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
     # Campo identificador padrão do usuario
-    'USER_ID_FIELD': 'idUsuario',
+    'USER_ID_FIELD': 'id',
 }
