@@ -60,10 +60,8 @@ class APITestMixin:
     def setUp(self):
         self.user = recipes.usuario.make(
             email=self.email, nome=self.nome, cpf=self.cpf,
-            tipo=self.tipo, password=self.password,
-            **self.usuario_kwargs
+            password=self.password, **self.usuario_kwargs
         )
-        self.user.id = self.user.idUsuario
         self.client = self.get_client()
 
 
