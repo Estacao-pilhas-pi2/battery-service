@@ -22,11 +22,10 @@ class APITestMixin:
     # Informações obrigatórias
     url = ''
 
-    # Caso deseje alterar o nome, CPF, entre outros dados é
+    # Caso deseje alterar o nome, email, entre outros dados é
     # possível alterar esses atributos
     email = 'email@teste.com'
     nome = 'Nome para Teste'
-    cpf = '03700076037'
     password = '12345678'
     usuario_kwargs = {}
 
@@ -59,7 +58,7 @@ class APITestMixin:
 
     def setUp(self):
         self.user = recipes.usuario.make(
-            email=self.email, nome=self.nome, cpf=self.cpf,
+            email=self.email, nome=self.nome,
             password=self.password, **self.usuario_kwargs
         )
         self.client = self.get_client()
