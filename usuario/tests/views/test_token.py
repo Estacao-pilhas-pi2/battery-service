@@ -15,10 +15,8 @@ class TokenObtainPairViewTest(APITestMixin, TestCase):
 
     def setUp(self):
         self.email = 'email2@teste.com'
-        self.cpf = '30078206006'
         self.senha = 'senha_forte'
-        self.usuario = usuario_recipe.make(
-            email=self.email, cpf=self.cpf, nome=self.nome)
+        self.usuario = usuario_recipe.make(email=self.email, nome=self.nome)
         self.usuario.set_password(self.senha)
         self.usuario.save(update_fields=['password'])
 
@@ -30,7 +28,7 @@ class TokenObtainPairViewTest(APITestMixin, TestCase):
         })
         self.assertEqual(response.status_code, 200, response.json())
 
-        for campo in ('id', 'cpf', 'nome', 'email'):
+        for campo in ('id', 'nome', 'email'):
             with self.subTest(campo=campo):
                 self.assertEqual(response.json()[campo], getattr(self, campo))
 
@@ -41,7 +39,7 @@ class TokenObtainPairViewTest(APITestMixin, TestCase):
         })
         self.assertEqual(response.status_code, 401, response.json())
         self.assertIn(
-            'Nenhuma conta encontrada. Email, CPF ou senha incorretos.',
+            'Nenhuma conta encontrada. Email ou senha incorretos.',
             response.json()['detail']
         )
 
@@ -51,9 +49,8 @@ class RefreshViewTest(APITestMixin, TestCase):
 
     def setUp(self):
         self.email = 'email2@teste.com'
-        self.cpf = '30078206006'
         self.senha = 'senha_forte'
-        self.usuario = usuario_recipe.make(email=self.email, cpf=self.cpf)
+        self.usuario = usuario_recipe.make(email=self.email)
         self.usuario.set_password(self.senha)
         self.usuario.save(update_fields=['password'])
 
@@ -82,9 +79,8 @@ class TokenVerifyViewTest(APITestMixin, TestCase):
 
     def setUp(self):
         self.email = 'email2@teste.com'
-        self.cpf = '30078206006'
         self.senha = 'senha_forte'
-        self.usuario = usuario_recipe.make(email=self.email, cpf=self.cpf)
+        self.usuario = usuario_recipe.make(email=self.email)
         self.usuario.set_password(self.senha)
         self.usuario.save(update_fields=['password'])
 
