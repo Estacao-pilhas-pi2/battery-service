@@ -2,8 +2,6 @@ from parameterized import parameterized
 
 from core.tests.mixin import APITestMixin
 
-from usuario.tests.recipes import usuario as usuario_recipe
-
 
 class UsuarioApiViewBase(APITestMixin):
     url = ""

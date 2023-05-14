@@ -17,6 +17,8 @@ ALLOWED_HOSTS = ["*"]
 
 LOCAL_APPS = [
     'usuario',
+    'reciclador',
+    'estabelecimento',
     'core',
 ]
 

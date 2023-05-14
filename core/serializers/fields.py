@@ -1,5 +1,3 @@
-import re
-
 from rest_framework import serializers
 from stdnum.br import cnpj, cpf
 
@@ -22,7 +20,7 @@ class CNPJField(serializers.CharField):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.validators.append(self.cnpj_validator)
-        
+
     def cnpj_validator(self, value):
         try:
             cnpj.validate(value)
