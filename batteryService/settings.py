@@ -20,6 +20,7 @@ LOCAL_APPS = [
     'reciclador',
     'estabelecimento',
     'core',
+    'maquina',
 ]
 
 INSTALLED_APPS = [
