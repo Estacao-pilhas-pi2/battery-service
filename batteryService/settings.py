@@ -21,6 +21,7 @@ LOCAL_APPS = [
     'estabelecimento',
     'core',
     'maquina',
+    'pagamento',
 ]
 
 INSTALLED_APPS = [
