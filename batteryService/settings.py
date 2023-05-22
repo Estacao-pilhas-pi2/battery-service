@@ -6,6 +6,8 @@ from dj_database_url import parse
 
 from pathlib import Path
 
+from firebase_admin import initialize_app, credentials
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +39,8 @@ INSTALLED_APPS = [
     'django_filters',
     'phonenumber_field',
     'rest_framework',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'fcm_django'
 ] + LOCAL_APPS
 
 MIDDLEWARE = [
@@ -138,4 +141,22 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
     # Campo identificador padrão do usuario
     'USER_ID_FIELD': 'id',
+}
+
+
+# Firebase Cloud Message
+# cred = credentials.Certificate(FIREBASE_AUTH) NOTE: Colocar credenciais em prod.
+FIREBASE_APP = initialize_app()  # cred
+
+FCM_DJANGO_SETTINGS = {
+    "DEFAULT_FIREBASE_APP": None,
+    "ONE_DEVICE_PER_USER": True
+}
+
+LIMITES_PILHAS = {
+    'AAA': 55,
+    'AA': 50,
+    'C': 40,
+    'D': 20,
+    'V9': 20,
 }
