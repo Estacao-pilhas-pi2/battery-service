@@ -6,7 +6,7 @@ from dj_database_url import parse
 
 from pathlib import Path
 
-from firebase_admin import initialize_app, credentials
+from firebase_admin import initialize_app  # credentials
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

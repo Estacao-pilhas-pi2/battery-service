@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from estabelecimento.models import Estabelecimento
 
@@ -32,12 +33,17 @@ class Maquina(models.Model):
     quantidade_V9 = models.IntegerField(default=0)
     estabelecimento = models.ForeignKey(Estabelecimento, on_delete=models.PROTECT, null=True, blank=True)
 
+    limite_maximo = models.DecimalField(
+        decimal_places=2, max_digits=4, default=70,
+        validators=[MinValueValidator(10), MaxValueValidator(100)]
+    )
+
     @property
     def capacidade_pilhas(self):
         notificar = []
 
         for tipo in ['AAA', 'AA', 'C', 'D', 'V9']:
-            limite_pilha = (self.estabelecimento.limite_maximo / 100) * settings.LIMITES_PILHAS[tipo]
+            limite_pilha = (self.limite_maximo / 100) * settings.LIMITES_PILHAS[tipo]
             if getattr(self, f'quantidade_{tipo}') >= limite_pilha:
                 notificar.append(tipo)
 
