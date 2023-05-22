@@ -2,6 +2,8 @@ from datetime import datetime, timedelta
 
 from django.db.models import F
 
+from firebase_admin.messaging import Message, Notification
+
 from rest_framework import serializers
 
 from pagamento.models import Pagamento
@@ -42,9 +44,21 @@ class PagamentoEfetuarSerializer(serializers.Serializer):
         for tipo in ['AAA', 'AA', 'C', 'D', 'V9']:
             setattr(
                 maquina, f'quantidade_{tipo}',
-                F(f'quantidade_{tipo}') + getattr(
+                getattr(maquina, f'quantidade_{tipo}') + getattr(
                     pagamento, f'quantidade_pilha_{tipo}'
                 )
             )
+        
+        maquina.save()
+        maquina.refresh_from_db()
+
+        if maquina.capacidade_pilhas:
+            device = maquina.estabelecimento.usuario.fcmdevice_set.first()
+            device.send_message(Message(notification=Notification(
+                title='Capacidade alcançada!', body='Uma de suas máquinas atingiu o limite configurado '
+                f'de f{maquina.estabelecimento.limite_maximo}% no(s) seguinte(s) '
+                f'tipos de pilhas: f{", ".join(maquina.capacidade_pilhas)}. Consulte '
+                'o aplicativo para mais informações!'
+            )))
 
         return pagamento.id

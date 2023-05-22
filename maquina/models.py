@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 from estabelecimento.models import Estabelecimento
 
@@ -28,3 +29,14 @@ class Maquina(models.Model):
     quantidade_D = models.IntegerField(default=0)
     quantidade_V9 = models.IntegerField(default=0)
     estabelecimento = models.ForeignKey(Estabelecimento, on_delete=models.PROTECT, null=True, blank=True)
+
+    @property
+    def capacidade_pilhas(self):
+        notificar = []
+
+        for tipo in ['AAA', 'AA', 'C', 'D', 'V9']:
+            limite_pilha = (self.estabelecimento.limite_maximo / 100) * settings.LIMITES_PILHAS[tipo]
+            if getattr(self, f'quantidade_{tipo}') >= limite_pilha:
+                notificar.append(tipo)
+
+        return notificar
