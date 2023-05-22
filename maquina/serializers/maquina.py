@@ -5,7 +5,8 @@ from rest_framework import serializers
 class EnderecoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Endereco
-        fields = ['cep', 'estado', 'cidade', 'bairro', 'rua', 'numero', 'complemento', 'descricao']
+        fields = '__all__'
+        read_only_fields = ['id']
 
 
 class MaquinaSerializer(serializers.ModelSerializer):

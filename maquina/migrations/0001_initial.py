@@ -25,6 +25,8 @@ class Migration(migrations.Migration):
                 ('numero', models.IntegerField()),
                 ('complemento', models.CharField(max_length=50, null=True)),
                 ('descricao', models.CharField(max_length=50, null=True)),
+                ('latitude', models.DecimalField(decimal_places=8, max_digits=13)),
+                ('longitude', models.DecimalField(decimal_places=8, max_digits=13)),
             ],
         ),
         migrations.CreateModel(

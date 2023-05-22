@@ -83,7 +83,8 @@ class PagamentoEfetuarViewTest(APITestMixin, TestCase):
     def setUp(self):
         self.estabelecimento = estabelecimento_recipe.make()
         self.maquina = baker.make(Maquina, estabelecimento=self.estabelecimento)
-        self.pagamento = pagamento_recipe.make(maquina=self.maquina, data_vencimento=(datetime.now() + timedelta(minutes=40)))
+        self.pagamento = pagamento_recipe.make(
+            maquina=self.maquina, data_vencimento=(datetime.now() + timedelta(minutes=40)))
         self.reciclador = reciclador_recipe.make(usuario=self.user)
 
     def test_efetua_pagamento_com_sucesso(self):
