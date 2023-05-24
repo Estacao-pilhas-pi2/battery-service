@@ -4,6 +4,7 @@ from maquina.serializers.maquina import MaquinaSerializer, MaquinaEsvaziarSerial
 from maquina.models import Maquina
 from estabelecimento.models import Estabelecimento
 
+
 class MaquinaListView(ListAPIView):
     serializer_class = MaquinaSerializer
 
