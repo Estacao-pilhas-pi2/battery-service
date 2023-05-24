@@ -1,0 +1,223 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Pilha",
+    "dateExported": "2023-05-23T21:20:12.667Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "11bb841d-024f-47d9-93dd-1a47190117d6",
+            "colId": "43484bb8-f7d4-42c3-99de-c3d390a02f6f",
+            "containerId": "",
+            "name": "Login",
+            "url": "http://0.0.0.0:8000/api/login/",
+            "method": "POST",
+            "sortNum": 5000,
+            "created": "2023-05-22T04:15:15.717Z",
+            "modified": "2023-05-23T21:16:48.774Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"teste@example.com\",\n  \"password\": \"senha123\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "73a063b7-1509-405d-9476-f9381249bb09",
+            "colId": "43484bb8-f7d4-42c3-99de-c3d390a02f6f",
+            "containerId": "",
+            "name": "Cria Reciclador",
+            "url": "http://0.0.0.0:8000/api/reciclador/",
+            "method": "POST",
+            "sortNum": 6250,
+            "created": "2023-05-22T04:14:08.838Z",
+            "modified": "2023-05-23T21:16:56.265Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"usuario\": {\n    \"nome\": \"Maria Reciclona\",\n    \"email\": \"maria@example.com\",\n    \"senha\": \"senha123\"\n  },\n  \"cpf\": \"34720762085\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "804809d3-b9ef-412c-9486-2c66413aba0f",
+            "colId": "43484bb8-f7d4-42c3-99de-c3d390a02f6f",
+            "containerId": "",
+            "name": "Cria Estabelecimento",
+            "url": "http://0.0.0.0:8000/api/estabelecimento/",
+            "method": "POST",
+            "sortNum": 6875,
+            "created": "2023-05-22T04:14:08.836Z",
+            "modified": "2023-05-23T21:16:58.357Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"usuario\": {\n    \"nome\": \"Joao Testosterona\",\n    \"email\": \"teste@example.com\",\n    \"senha\": \"senha123\"\n  },\n  \"cnpj\": \"97288091000144\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "9bddeb21-6bd2-4b18-9058-a4f5fd9f62ef",
+            "colId": "43484bb8-f7d4-42c3-99de-c3d390a02f6f",
+            "containerId": "",
+            "name": "Cadastra celular para estabelecimento",
+            "url": "http://0.0.0.0:8000/api/estabelecimento/celular/",
+            "method": "POST",
+            "sortNum": 7500,
+            "created": "2023-05-23T21:09:25.625Z",
+            "modified": "2023-05-23T21:16:53.942Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"registration_id\": \"1\",\n  \"type\": \"android\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f97a96a3-a18c-4b3f-a6d0-a3c7b218448d",
+            "colId": "43484bb8-f7d4-42c3-99de-c3d390a02f6f",
+            "containerId": "",
+            "name": "Cria Maquina",
+            "url": "http://0.0.0.0:8000/api/maquina/1/",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2023-05-22T04:14:08.839Z",
+            "modified": "2023-05-22T04:18:49.167Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1MTYxMTIwLCJpYXQiOjE2ODQ3MjkxMjAsImp0aSI6Ijc4YzE3MjczY2I3YjRmY2M5Yzc3ODk4NGFjNDYzMzg4IiwidXNlcl9pZCI6Mn0.d2I5ODQbBUPHM7joRG-2L282iLp1CfkWVMWpxFD4Ok8"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"descricao\": \"Maquina A\",\n  \"endereco\": {\n    \"cep\": \"12345678\",\n    \"estado\": \"SP\",\n    \"cidade\": \"São Paulo\",\n    \"bairro\": \"Centro\",\n    \"rua\": \"Avenida Principal\",\n    \"numero\": 123,\n    \"complemento\": \"Verde\",\n    \"latitude\": 70.45,\n    \"longitude\": 71.42\n  },\n  \"preco_AAA\": 22,\n  \"preco_AA\": 8,\n  \"preco_C\": 15,\n  \"preco_D\": 12,\n  \"preco_V9\": 20,\n  \"estabelecimento\": 1\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a1a7f0e3-3e70-4701-8a79-48a4f993b794",
+            "colId": "43484bb8-f7d4-42c3-99de-c3d390a02f6f",
+            "containerId": "",
+            "name": "Edita Maquina",
+            "url": "http://0.0.0.0:8000/api/maquina/1/",
+            "method": "PATCH",
+            "sortNum": 35000,
+            "created": "2023-05-22T04:19:05.355Z",
+            "modified": "2023-05-22T04:20:46.405Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1MTYxMTIwLCJpYXQiOjE2ODQ3MjkxMjAsImp0aSI6Ijc4YzE3MjczY2I3YjRmY2M5Yzc3ODk4NGFjNDYzMzg4IiwidXNlcl9pZCI6Mn0.d2I5ODQbBUPHM7joRG-2L282iLp1CfkWVMWpxFD4Ok8",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"limite_maximo\": 1\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "4f6b8ace-a81d-49ad-b9b0-5bb0102fda97",
+            "colId": "43484bb8-f7d4-42c3-99de-c3d390a02f6f",
+            "containerId": "",
+            "name": "Esvaziar maquina",
+            "url": "http://0.0.0.0:8000/api/maquina/esvaziar/",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-05-22T04:14:08.840Z",
+            "modified": "2023-05-22T04:14:08.840Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": 1\n}\n"
+            }
+        },
+        {
+            "_id": "84add779-635c-41f4-b437-17718a6573b4",
+            "colId": "43484bb8-f7d4-42c3-99de-c3d390a02f6f",
+            "containerId": "",
+            "name": "Listar Maquina",
+            "url": "http://0.0.0.0:8000/api/maquina/",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-05-22T04:14:08.841Z",
+            "modified": "2023-05-22T04:14:08.841Z",
+            "headers": []
+        },
+        {
+            "_id": "dec90ebc-8a99-4e20-9ab8-a5e81e04af08",
+            "colId": "43484bb8-f7d4-42c3-99de-c3d390a02f6f",
+            "containerId": "",
+            "name": "Detalhar Maquina",
+            "url": "http://0.0.0.0:8000/api/maquina/1/",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-05-22T04:14:08.842Z",
+            "modified": "2023-05-22T04:14:08.842Z",
+            "headers": []
+        },
+        {
+            "_id": "aae3ed01-6bbb-4801-ba79-2860ab949e45",
+            "colId": "43484bb8-f7d4-42c3-99de-c3d390a02f6f",
+            "containerId": "",
+            "name": "Criar pagamento",
+            "url": "http://0.0.0.0:8000/api/pagamento/",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2023-05-23T21:04:37.651Z",
+            "modified": "2023-05-23T21:09:19.802Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer ...",
+                    "isDisabled": true
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"quantidade_pilha_AA\": 0,\n  \"quantidade_pilha_AAA\": 0,\n  \"quantidade_pilha_C\": 0,\n  \"quantidade_pilha_D\": 0,\n  \"quantidade_pilha_V9\": 0,\n  \"maquina\": 1\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "8187b0b7-bfc5-406e-a600-b7867b5f3ac5",
+            "colId": "43484bb8-f7d4-42c3-99de-c3d390a02f6f",
+            "containerId": "",
+            "name": "Efetuar pagamento",
+            "url": "http://0.0.0.0:8000/api/pagamento/efetuar/",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2023-05-23T21:07:26.015Z",
+            "modified": "2023-05-23T21:09:22.071Z",
+            "headers": [
+                {
+                    "name": "Authorization",
+                    "value": "Bearer ..."
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id_pagamento\": 1\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

@@ -1,3 +1,4 @@
+from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
 from reciclador.models import Reciclador
@@ -27,3 +28,10 @@ class RecicladorSerializer(UsuarioSerializer):
         )
 
         return Reciclador.objects.create(usuario=usuario, **validated_data)
+
+
+class RecicladorDetailSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Reciclador
+        fields = '__all__'

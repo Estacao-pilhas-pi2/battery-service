@@ -9,5 +9,9 @@ urlpatterns = [
             r'^$', reciclador.RecicladorCadastroView.as_view(),
             name='reciclador-create'
         ),
+        re_path(
+            r'^(?P<pk>[\w\d]+)/$', reciclador.RecicladorDetailView.as_view(),
+            name='reciclador-detail'
+        )
     ])),
 ]
