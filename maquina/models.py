@@ -34,7 +34,7 @@ class Maquina(models.Model):
     estabelecimento = models.ForeignKey(Estabelecimento, on_delete=models.PROTECT, null=True, blank=True)
 
     limite_maximo = models.DecimalField(
-        decimal_places=2, max_digits=4, default=70,
+        decimal_places=2, max_digits=5, default=70,
         validators=[MinValueValidator(10), MaxValueValidator(100)]
     )
 
