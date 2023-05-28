@@ -12,4 +12,5 @@ class TokenObtainPairSerializer(TokenObtainPairSerializer):
         data.update({'email': self.user.email})
         data.update({'nome': self.user.nome})
         data.update({'estabelecimento': hasattr(self.user, 'estabelecimento')})
+        data.update({'identificador': str(self.user.estabelecimento.id if hasattr(self.user, 'estabelecimento') else self.user.reciclador.id)})
         return data
