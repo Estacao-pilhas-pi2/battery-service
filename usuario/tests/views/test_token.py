@@ -9,6 +9,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from usuario.tests.recipes import usuario as usuario_recipe
 
+from reciclador.tests.recipes import reciclador as reciclador_recipe
+
 
 class TokenObtainPairViewTest(APITestMixin, TestCase):
     url = reverse_lazy('usuario-login')
@@ -21,6 +23,7 @@ class TokenObtainPairViewTest(APITestMixin, TestCase):
         self.usuario.save(update_fields=['password'])
 
     def test_login(self):
+        reciclador_recipe.make(usuario=self.usuario)
         self.id = str(self.usuario.id)
         response = self.client.post(self.url, data={
             'email': self.email,

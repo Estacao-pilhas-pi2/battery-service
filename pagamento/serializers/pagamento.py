@@ -60,3 +60,9 @@ class PagamentoEfetuarSerializer(serializers.Serializer):
             )))
 
         return pagamento.id
+
+    def to_representation(self, _):
+        return PagamentoSerializer(
+            instance=self.validated_data['id_pagamento'],
+            context=self.context
+        ).data
