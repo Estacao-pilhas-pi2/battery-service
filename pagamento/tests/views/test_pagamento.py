@@ -96,7 +96,7 @@ class PagamentoEfetuarViewTest(APITestMixin, TestCase):
         for tipo in ['AAA', 'AA', 'C', 'D', 'V9']:
             self.assertEqual(getattr(self.maquina, f'quantidade_{tipo}'), getattr(self.pagamento, f'quantidade_pilha_{tipo}'))
         self.pagamento.refresh_from_db()
-        self.assertFalse(self.pagamento.utilizado)
+        self.assertTrue(self.pagamento.utilizado)
 
     def test_nao_efetua_pagamento_vencido(self):
         self.pagamento.data_vencimento = datetime.now() - timedelta(minutes=40)

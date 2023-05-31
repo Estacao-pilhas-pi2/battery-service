@@ -8,11 +8,19 @@ from pagamento.models import Pagamento
 
 
 class PagamentoSerializer(serializers.ModelSerializer):
+    valor_total = serializers.SerializerMethodField()
 
     class Meta:
         model = Pagamento
-        fields = '__all__'
+        fields = [
+            'id', 'quantidade_pilha_AA', 'quantidade_pilha_AAA', 'quantidade_pilha_C',
+            'quantidade_pilha_D', 'quantidade_pilha_V9', 'utilizado', 'data_vencimento',
+            'maquina', 'valor_total'
+        ]
         read_only_fields = ['id', 'utilizado', 'data_vencimento']
+
+    def get_valor_total(self, obj):
+        return obj.valor_total
 
     def create(self, validated_data):
         validated_data['data_vencimento'] = datetime.now() + timedelta(minutes=5)
@@ -27,15 +35,21 @@ class PagamentoEfetuarSerializer(serializers.Serializer):
             raise serializers.ValidationError({
                 'data_vencimento': 'Pagamento com data de vencimento expirada.'
             })
+
+        if data['id_pagamento'].utilizado:
+            raise serializers.ValidationError({
+                'utilizado': 'Pagamento já foi utilizado.'
+            })
+
         return data
 
     def save(self):
         pagamento = self.validated_data['id_pagamento']
-        pagamento.utizado = False
+        pagamento.utilizado = True
         pagamento.save()
 
         reciclador = self.context['request'].user.reciclador
-        reciclador.credito = pagamento.valor_total
+        reciclador.credito = reciclador.credito + pagamento.valor_total
         reciclador.save()
 
         maquina = pagamento.maquina
