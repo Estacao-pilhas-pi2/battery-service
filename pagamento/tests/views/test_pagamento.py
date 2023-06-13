@@ -23,7 +23,7 @@ from rest_framework.reverse import reverse_lazy
 
 
 class PagamentoViewTest(TestCase):
-    url = reverse_lazy("pagamento-create")
+    url = reverse_lazy("pagamento-list-create")
 
     @property
     def _payload(self):
@@ -70,6 +70,13 @@ class PagamentoViewTest(TestCase):
             datetime(2023, 1, 1, 4, 25)
         )
 
+        for tipo in ['AAA', 'AA', 'C', 'D', 'V9']:
+            with self.subTest(tipo=tipo):
+                self.assertEqual(
+                    getattr(pagamento, f'preco_{tipo}'),
+                    getattr(self.maquina, f'preco_{tipo}')
+                )
+
 
 class PagamentoEfetuarViewTest(APITestMixin, TestCase):
     url = reverse_lazy("pagamento-efetuar")
@@ -97,6 +104,7 @@ class PagamentoEfetuarViewTest(APITestMixin, TestCase):
             self.assertEqual(getattr(self.maquina, f'quantidade_{tipo}'), getattr(self.pagamento, f'quantidade_pilha_{tipo}'))
         self.pagamento.refresh_from_db()
         self.assertTrue(self.pagamento.utilizado)
+        self.assertEqual(self.pagamento.reciclador, self.reciclador)
 
     def test_nao_efetua_pagamento_vencido(self):
         self.pagamento.data_vencimento = datetime.now() - timedelta(minutes=40)
