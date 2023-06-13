@@ -15,15 +15,24 @@ class PagamentoSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'quantidade_pilha_AA', 'quantidade_pilha_AAA', 'quantidade_pilha_C',
             'quantidade_pilha_D', 'quantidade_pilha_V9', 'utilizado', 'data_vencimento',
-            'maquina', 'valor_total'
+            'maquina', 'valor_total', 'preco_AAA', 'preco_AA', 'preco_V9', 'preco_C', 
+            'preco_D'
         ]
-        read_only_fields = ['id', 'utilizado', 'data_vencimento']
+        read_only_fields = [
+            'id', 'utilizado', 'data_vencimento', 'preco_AAA', 'preco_AA',
+            'preco_V9', 'preco_C', 'preco_D'
+        ]
 
     def get_valor_total(self, obj):
         return obj.valor_total
 
     def create(self, validated_data):
         validated_data['data_vencimento'] = datetime.now() + timedelta(minutes=5)
+        maquina = validated_data['maquina']
+
+        for tipo in ['AAA', 'AA', 'C', 'D', 'V9']:
+            validated_data[f'preco_{tipo}'] = getattr(maquina, f'preco_{tipo}')
+
         return super().create(validated_data)
 
 
@@ -44,11 +53,12 @@ class PagamentoEfetuarSerializer(serializers.Serializer):
         return data
 
     def save(self):
+        reciclador = self.context['request'].user.reciclador
         pagamento = self.validated_data['id_pagamento']
         pagamento.utilizado = True
+        pagamento.reciclador = reciclador
         pagamento.save()
 
-        reciclador = self.context['request'].user.reciclador
         reciclador.credito = reciclador.credito + pagamento.valor_total
         reciclador.save()
 

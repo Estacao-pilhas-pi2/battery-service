@@ -1,5 +1,3 @@
-import contextlib
-
 from django.contrib import admin
 from django.urls import include, re_path
 
@@ -10,9 +8,7 @@ from django.conf.urls.static import static
 
 url_api = []
 for app in settings.LOCAL_APPS:
-    # Adiciona supressão para o módulo core (testes)
-    with contextlib.suppress(ModuleNotFoundError):
-        url_api.append(re_path(r'^', include(f'{app}.urls')))
+    url_api.append(re_path(r'^', include(f'{app}.urls')))
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
