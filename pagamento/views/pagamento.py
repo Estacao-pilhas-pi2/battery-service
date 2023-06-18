@@ -1,4 +1,4 @@
-from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveAPIView
+from rest_framework.generics import CreateAPIView, ListCreateAPIView
 
 from pagamento.serializers.pagamento import PagamentoSerializer, PagamentoEfetuarSerializer
 from pagamento.models import Pagamento
