@@ -115,3 +115,87 @@ class PagamentoEfetuarViewTest(APITestMixin, TestCase):
             'Pagamento com data de vencimento expirada.',
             response.json()['data_vencimento']
         )
+
+    def test_nao_efetua_pagamento_sem_id_ou_pagamento(self):
+        response = self.client.post(self.url, {})
+        self.assertEqual(response.status_code, 400, response.json())
+        self.assertIn(
+            'ID do pagamento ou novo pagamento deve ser informado.',
+            response.json()['id_pagamento']
+        )
+
+    def test_nao_efetua_pagamento_com_id_e_pagamento(self):
+        payload = self._payload
+        payload['pagamento'] = {
+            "quantidade_pilha_AAA": 5,
+            "quantidade_pilha_C": 2,
+            "data_vencimento": datetime.now() + timedelta(days=2),
+            "maquina": self.maquina.id
+        }
+
+        response = self.client.post(self.url, payload)
+        self.assertEqual(response.status_code, 400, response.json())
+        self.assertIn(
+            'Apenas ID do pagamento ou novo pagamento deve ser informado.',
+            response.json()['pagamento']
+        )
+
+    def test_nao_efetua_pagamento_com_novo_pagamento_vencido(self):
+        payload = self._payload
+        payload.pop('id_pagamento')
+        payload['pagamento'] = {
+            "quantidade_pilha_AAA": 5,
+            "quantidade_pilha_C": 2,
+            "data_vencimento": datetime.now() - timedelta(days=2),
+            "maquina": self.maquina.id
+        }
+
+        response = self.client.post(self.url, payload)
+        self.assertEqual(response.status_code, 400, response.json())
+        self.assertIn(
+            'Data de vencimento no passado não permitida.',
+            response.json()['pagamento']['data_vencimento']
+        )
+
+    def test_efetua_pagamento_com_novo_pagamento(self):
+        payload = self._payload
+        payload.pop('id_pagamento')
+        payload['pagamento'] = {
+            "quantidade_pilha_AAA": 5,
+            "quantidade_pilha_C": 2,
+            "data_vencimento": datetime.now() + timedelta(days=2),
+            "maquina": self.maquina.id
+        }
+
+        response = self.client.post(self.url, payload)
+        self.assertEqual(response.status_code, 201, response.json())
+
+        # Certifica-se de que os creditos foram adicionados a conta do reciclador
+        self.assertEqual(self.pagamento.valor_total, self.reciclador.credito)
+        for tipo in ['AAA', 'AA', 'C', 'D', 'V9']:
+            self.assertEqual(getattr(self.maquina, f'quantidade_{tipo}'), getattr(self.pagamento, f'quantidade_pilha_{tipo}'))
+
+        self.assertTrue(Pagamento.objects.exclude(id=self.pagamento.id).exists())
+        pagamento = Pagamento.objects.exclude(id=self.pagamento.id).first()
+        self.assertTrue(pagamento.utilizado)
+        self.assertEqual(pagamento.reciclador, self.reciclador)
+
+    def test_efetua_pagamento_esvazia_maquina(self):
+        payload = self._payload
+        payload.pop('id_pagamento')
+        payload['pagamento'] = {
+            "quantidade_pilha_AAA": 5,
+            "data_vencimento": datetime.now() + timedelta(days=2),
+            "maquina": self.maquina.id,
+            "esvaziado": True
+        }
+
+        self.maquina.quantidade_AAA = 3
+        self.maquina.quantidade_AA = 10
+        self.maquina.save()
+
+        response = self.client.post(self.url, payload)
+        self.assertEqual(response.status_code, 201, response.json())
+        self.maquina.refresh_from_db()
+        self.assertEqual(self.maquina.quantidade_AAA, payload['pagamento']['quantidade_pilha_AAA'])
+        self.assertEqual(self.maquina.quantidade_AA, 0)

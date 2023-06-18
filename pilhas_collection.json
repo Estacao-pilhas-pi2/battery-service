@@ -1,387 +1,443 @@
 {
-    "info": {
-        "_postman_id": "2f99ec49-65b6-46e2-936f-7d165d267cb8",
-        "name": "Pilha",
-        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-        "description": ""
-    },
-    "item": [
-        {
-            "name": "Login",
-            "request": {
-                "method": "POST",
-                "url": {
-                    "raw": "http://0.0.0.0:8000/api/login/",
-                    "path": [
-                        "api",
-                        "login"
-                    ],
-                    "protocol": "http",
-                    "host": [
-                        "0",
-                        "0",
-                        "0",
-                        "0"
-                    ],
-                    "port": "8000"
-                },
-                "body": {
-                    "mode": "raw",
-                    "options": {
-                        "raw": {
-                            "language": "json"
-                        }
-                    },
-                    "raw": "{\n  \"email\": \"maria@example.com\",\n  \"password\": \"senha123\"\n}"
-                }
-            }
-        },
-        {
-            "name": "Cria Reciclador",
-            "request": {
-                "method": "POST",
-                "url": {
-                    "raw": "http://0.0.0.0:8000/api/reciclador/",
-                    "path": [
-                        "api",
-                        "reciclador"
-                    ],
-                    "protocol": "http",
-                    "host": [
-                        "0",
-                        "0",
-                        "0",
-                        "0"
-                    ],
-                    "port": "8000"
-                },
-                "body": {
-                    "mode": "raw",
-                    "options": {
-                        "raw": {
-                            "language": "json"
-                        }
-                    },
-                    "raw": "{\n  \"usuario\": {\n    \"nome\": \"Maria Reciclona\",\n    \"email\": \"maria@example.com\",\n    \"senha\": \"senha123\"\n  },\n  \"cpf\": \"34720762085\"\n}"
-                }
-            }
-        },
-        {
-            "name": "Cria Estabelecimento",
-            "request": {
-                "method": "POST",
-                "url": {
-                    "raw": "http://0.0.0.0:8000/api/estabelecimento/",
-                    "path": [
-                        "api",
-                        "estabelecimento"
-                    ],
-                    "protocol": "http",
-                    "host": [
-                        "0",
-                        "0",
-                        "0",
-                        "0"
-                    ],
-                    "port": "8000"
-                },
-                "body": {
-                    "mode": "raw",
-                    "options": {
-                        "raw": {
-                            "language": "json"
-                        }
-                    },
-                    "raw": "{\n  \"usuario\": {\n    \"nome\": \"Joao Testosterona\",\n    \"email\": \"teste@example.com\",\n    \"senha\": \"senha123\"\n  },\n  \"cnpj\": \"97288091000144\"\n}"
-                }
-            }
-        },
-        {
-            "name": "Cria Maquina",
-            "request": {
-                "method": "PUT",
-                "url": {
-                    "raw": "http://0.0.0.0:8000/api/maquina/1/",
-                    "path": [
-                        "api",
-                        "maquina",
-                        "1"
-                    ],
-                    "protocol": "http",
-                    "host": [
-                        "0",
-                        "0",
-                        "0",
-                        "0"
-                    ],
-                    "port": "8000"
-                },
-                "header": [
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3MDUyNzkzLCJpYXQiOjE2ODY2MjA3OTMsImp0aSI6IjU3ZWM5MmIyMDFmYzQwZmNhZGQ0YzM3OTE0YmFiZTZjIiwidXNlcl9pZCI6Mn0.7qHq4u1lwY_0jV-HcrZX7Uvq39cKZD9Txg5tu7MZwzc"
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "options": {
-                        "raw": {
-                            "language": "json"
-                        }
-                    },
-                    "raw": "{\n  \"descricao\": \"Maquina A\",\n  \"endereco\": {\n    \"cep\": \"12345678\",\n    \"estado\": \"SP\",\n    \"cidade\": \"São Paulo\",\n    \"bairro\": \"Centro\",\n    \"rua\": \"Avenida Principal\",\n    \"numero\": 123,\n    \"complemento\": \"Verde\",\n    \"latitude\": 70.45,\n    \"longitude\": 71.42\n  },\n  \"preco_AAA\": 22,\n  \"preco_AA\": 8,\n  \"preco_C\": 15,\n  \"preco_D\": 12,\n  \"preco_V9\": 20,\n  \"estabelecimento\": 1\n}\n"
-                }
-            }
-        },
-        {
-            "name": "Cadastra celular para estabelecimento",
-            "request": {
-                "method": "POST",
-                "url": {
-                    "raw": "http://0.0.0.0:8000/api/estabelecimento/celular/",
-                    "path": [
-                        "api",
-                        "estabelecimento",
-                        "celular"
-                    ],
-                    "protocol": "http",
-                    "host": [
-                        "0",
-                        "0",
-                        "0",
-                        "0"
-                    ],
-                    "port": "8000"
-                },
-                "body": {
-                    "mode": "raw",
-                    "options": {
-                        "raw": {
-                            "language": "json"
-                        }
-                    },
-                    "raw": "{\n  \"registration_id\": \"1\",\n  \"type\": \"android\"\n}"
-                }
-            }
-        },
-        {
-            "name": "Edita Maquina",
-            "request": {
-                "method": "PATCH",
-                "url": {
-                    "raw": "http://0.0.0.0:8000/api/maquina/1/",
-                    "path": [
-                        "api",
-                        "maquina",
-                        "1"
-                    ],
-                    "protocol": "http",
-                    "host": [
-                        "0",
-                        "0",
-                        "0",
-                        "0"
-                    ],
-                    "port": "8000"
-                },
-                "header": [
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1MTYxMTIwLCJpYXQiOjE2ODQ3MjkxMjAsImp0aSI6Ijc4YzE3MjczY2I3YjRmY2M5Yzc3ODk4NGFjNDYzMzg4IiwidXNlcl9pZCI6Mn0.d2I5ODQbBUPHM7joRG-2L282iLp1CfkWVMWpxFD4Ok8",
-                        "disabled": true
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "options": {
-                        "raw": {
-                            "language": "json"
-                        }
-                    },
-                    "raw": "{\n  \"limite_maximo\": 1\n}\n"
-                }
-            }
-        },
-        {
-            "name": "Esvaziar maquina",
-            "request": {
-                "method": "POST",
-                "url": {
-                    "raw": "http://0.0.0.0:8000/api/maquina/esvaziar/",
-                    "path": [
-                        "api",
-                        "maquina",
-                        "esvaziar"
-                    ],
-                    "protocol": "http",
-                    "host": [
-                        "0",
-                        "0",
-                        "0",
-                        "0"
-                    ],
-                    "port": "8000"
-                },
-                "body": {
-                    "mode": "raw",
-                    "options": {
-                        "raw": {
-                            "language": "json"
-                        }
-                    },
-                    "raw": "{\n  \"id\": 1\n}\n"
-                }
-            }
-        },
-        {
-            "name": "Listar Maquina",
-            "request": {
-                "method": "GET",
-                "url": {
-                    "raw": "http://0.0.0.0:8000/api/maquina/",
-                    "path": [
-                        "api",
-                        "maquina"
-                    ],
-                    "protocol": "http",
-                    "host": [
-                        "0",
-                        "0",
-                        "0",
-                        "0"
-                    ],
-                    "port": "8000"
-                },
-                "header": [
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3MDUxNDUwLCJpYXQiOjE2ODY2MTk0NTAsImp0aSI6Ijg3NjBiYThmOTViMzQ4Y2JhYmM2MTk2YWE2M2JkZTYzIiwidXNlcl9pZCI6Mn0.987AK0S3ONvIaw6KemUPWjFZVUI0HtJkyRRwd1PgovE"
-                    }
-                ]
-            }
-        },
-        {
-            "name": "Detalhar Maquina",
-            "request": {
-                "method": "GET",
-                "url": {
-                    "raw": "http://0.0.0.0:8000/api/maquina/1/",
-                    "path": [
-                        "api",
-                        "maquina",
-                        "1"
-                    ],
-                    "protocol": "http",
-                    "host": [
-                        "0",
-                        "0",
-                        "0",
-                        "0"
-                    ],
-                    "port": "8000"
-                }
-            }
-        },
-        {
-            "name": "Criar pagamento",
-            "request": {
-                "method": "POST",
-                "url": {
-                    "raw": "http://0.0.0.0:8000/api/pagamento/",
-                    "path": [
-                        "api",
-                        "pagamento"
-                    ],
-                    "protocol": "http",
-                    "host": [
-                        "0",
-                        "0",
-                        "0",
-                        "0"
-                    ],
-                    "port": "8000"
-                },
-                "header": [
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3MDUyNzkzLCJpYXQiOjE2ODY2MjA3OTMsImp0aSI6IjU3ZWM5MmIyMDFmYzQwZmNhZGQ0YzM3OTE0YmFiZTZjIiwidXNlcl9pZCI6Mn0.7qHq4u1lwY_0jV-HcrZX7Uvq39cKZD9Txg5tu7MZwzc",
-                        "disabled": true
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "options": {
-                        "raw": {
-                            "language": "json"
-                        }
-                    },
-                    "raw": "{\n  \"quantidade_pilha_AA\": 1,\n  \"quantidade_pilha_AAA\": 0,\n  \"quantidade_pilha_C\": 2,\n  \"quantidade_pilha_D\": 0,\n  \"quantidade_pilha_V9\": 0,\n  \"maquina\": 1\n}"
-                }
-            }
-        },
-        {
-            "name": "Listar Pagamento (Histórico)",
-            "request": {
-                "method": "GET",
-                "url": {
-                    "raw": "http://0.0.0.0:8000/api/pagamento/",
-                    "path": [
-                        "api",
-                        "pagamento"
-                    ],
-                    "protocol": "http",
-                    "host": [
-                        "0",
-                        "0",
-                        "0",
-                        "0"
-                    ],
-                    "port": "8000"
-                },
-                "header": [
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer ..."
-                    }
-                ]
-            }
-        },
-        {
-            "name": "Efetuar pagamento",
-            "request": {
-                "method": "POST",
-                "url": {
-                    "raw": "http://0.0.0.0:8000/api/pagamento/efetuar/",
-                    "path": [
-                        "api",
-                        "pagamento",
-                        "efetuar"
-                    ],
-                    "protocol": "http",
-                    "host": [
-                        "0",
-                        "0",
-                        "0",
-                        "0"
-                    ],
-                    "port": "8000"
-                },
-                "header": [
-                    {
-                        "key": "Authorization",
-                        "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3MDUyOTQ0LCJpYXQiOjE2ODY2MjA5NDQsImp0aSI6IjA4NjU0OTRhODViODQzYzU4MWE5NWI0NzRlYjU4MzE1IiwidXNlcl9pZCI6M30.B4eGaTTWDDh-7kiZFOx_4DrtUN2I-tDAB9S7T_IV3-c"
-                    }
-                ],
-                "body": {
-                    "mode": "raw",
-                    "options": {
-                        "raw": {
-                            "language": "json"
-                        }
-                    },
-                    "raw": "{\n  \"id_pagamento\": \"3ebe07f9-b0bb-475f-984e-7a6affeca575\"\n}"
-                }
-            }
-        }
-    ]
+	"info": {
+		"_postman_id": "19e3b9c4-c0f5-4536-b1e7-f1cf061b55c4",
+		"name": "Pilha",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14924118"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"maria@example.com\",\n  \"password\": \"senha123\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cria Reciclador",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"usuario\": {\n    \"nome\": \"Maria Reciclona\",\n    \"email\": \"maria@example.com\",\n    \"senha\": \"senha123\"\n  },\n  \"cpf\": \"34720762085\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/reciclador",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reciclador"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cria Estabelecimento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"usuario\": {\n    \"nome\": \"Joao Testosterona\",\n    \"email\": \"teste@example.com\",\n    \"senha\": \"senha123\"\n  },\n  \"cnpj\": \"97288091000144\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/estabelecimento",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"estabelecimento"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cria Maquina",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3MDUyNzkzLCJpYXQiOjE2ODY2MjA3OTMsImp0aSI6IjU3ZWM5MmIyMDFmYzQwZmNhZGQ0YzM3OTE0YmFiZTZjIiwidXNlcl9pZCI6Mn0.7qHq4u1lwY_0jV-HcrZX7Uvq39cKZD9Txg5tu7MZwzc"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"descricao\": \"Maquina A\",\n  \"endereco\": {\n    \"cep\": \"12345678\",\n    \"estado\": \"SP\",\n    \"cidade\": \"São Paulo\",\n    \"bairro\": \"Centro\",\n    \"rua\": \"Avenida Principal\",\n    \"numero\": 123,\n    \"complemento\": \"Verde\",\n    \"latitude\": 70.45,\n    \"longitude\": 71.42\n  },\n  \"preco_AAA\": 22,\n  \"preco_AA\": 8,\n  \"preco_C\": 15,\n  \"preco_D\": 12,\n  \"preco_V9\": 20,\n  \"estabelecimento\": 1\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/maquina/1",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"maquina",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastra celular para estabelecimento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"registration_id\": \"1\",\n  \"type\": \"android\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/estabelecimento/celular",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"estabelecimento",
+						"celular"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edita Maquina",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg1MTYxMTIwLCJpYXQiOjE2ODQ3MjkxMjAsImp0aSI6Ijc4YzE3MjczY2I3YjRmY2M5Yzc3ODk4NGFjNDYzMzg4IiwidXNlcl9pZCI6Mn0.d2I5ODQbBUPHM7joRG-2L282iLp1CfkWVMWpxFD4Ok8",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"limite_maximo\": 1\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/maquina/1",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"maquina",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Esvaziar maquina",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 1\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/maquina/esvaziar",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"maquina",
+						"esvaziar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Maquina",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3MDUxNDUwLCJpYXQiOjE2ODY2MTk0NTAsImp0aSI6Ijg3NjBiYThmOTViMzQ4Y2JhYmM2MTk2YWE2M2JkZTYzIiwidXNlcl9pZCI6Mn0.987AK0S3ONvIaw6KemUPWjFZVUI0HtJkyRRwd1PgovE"
+					}
+				],
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/maquina",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"maquina"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detalhar Maquina",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/maquina/1",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"maquina",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar pagamento",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3MDUyNzkzLCJpYXQiOjE2ODY2MjA3OTMsImp0aSI6IjU3ZWM5MmIyMDFmYzQwZmNhZGQ0YzM3OTE0YmFiZTZjIiwidXNlcl9pZCI6Mn0.7qHq4u1lwY_0jV-HcrZX7Uvq39cKZD9Txg5tu7MZwzc",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"quantidade_pilha_AA\": 1,\n  \"quantidade_pilha_AAA\": 0,\n  \"quantidade_pilha_C\": 2,\n  \"quantidade_pilha_D\": 0,\n  \"quantidade_pilha_V9\": 0,\n  \"maquina\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/pagamento",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pagamento"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Pagamento (Histórico)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer ..."
+					}
+				],
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/pagamento",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pagamento"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Efetuar pagamento",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3MDUyOTQ0LCJpYXQiOjE2ODY2MjA5NDQsImp0aSI6IjA4NjU0OTRhODViODQzYzU4MWE5NWI0NzRlYjU4MzE1IiwidXNlcl9pZCI6M30.B4eGaTTWDDh-7kiZFOx_4DrtUN2I-tDAB9S7T_IV3-c"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id_pagamento\": \"3ebe07f9-b0bb-475f-984e-7a6affeca575\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/pagamento/efetuar",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pagamento",
+						"efetuar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Efetuar pagamento sem id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3MDUyOTQ0LCJpYXQiOjE2ODY2MjA5NDQsImp0aSI6IjA4NjU0OTRhODViODQzYzU4MWE5NWI0NzRlYjU4MzE1IiwidXNlcl9pZCI6M30.B4eGaTTWDDh-7kiZFOx_4DrtUN2I-tDAB9S7T_IV3-c"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id_pagamento\": \"3ebe07f9-b0bb-475f-984e-7a6affeca575\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8000/api/pagamento/efetuar",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"pagamento",
+						"efetuar"
+					]
+				}
+			},
+			"response": []
+		}
+	]
 }
