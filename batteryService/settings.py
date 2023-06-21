@@ -1,3 +1,5 @@
+import json
+
 from decouple import config
 
 from datetime import timedelta
@@ -6,7 +8,7 @@ from dj_database_url import parse
 
 from pathlib import Path
 
-from firebase_admin import initialize_app  # credentials
+from firebase_admin import initialize_app, credentials
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -146,7 +148,15 @@ SIMPLE_JWT = {
 
 # Firebase Cloud Message
 # cred = credentials.Certificate(FIREBASE_AUTH) NOTE: Colocar credenciais em prod.
-FIREBASE_APP = initialize_app()  # cred
+FIREBASE_AUTH = config("FIREBASE_AUTH", default=None)
+
+if FIREBASE_AUTH is not None:
+    if isinstance(FIREBASE_AUTH, str):
+        FIREBASE_AUTH = json.loads(FIREBASE_AUTH)
+    cred = credentials.Certificate(FIREBASE_AUTH)
+    FIREBASE_APP = initialize_app(cred)
+else:
+    FIREBASE_APP = initialize_app()  # cred
 
 FCM_DJANGO_SETTINGS = {
     "DEFAULT_FIREBASE_APP": None,
