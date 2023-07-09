@@ -1,6 +1,6 @@
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView
 
-from maquina.serializers.maquina import MaquinaSerializer, MaquinaEsvaziarSerializer
+from maquina.serializers.maquina import MaquinaSerializer, MaquinaHistoricoSerializer, MaquinaEsvaziarSerializer
 from maquina.models import Maquina
 from estabelecimento.models import Estabelecimento
 
@@ -21,6 +21,11 @@ class MaquinaListView(ListAPIView):
 class MaquinaUpdateRetrieveView(RetrieveUpdateAPIView):
     queryset = Maquina.objects.all()
     serializer_class = MaquinaSerializer
+
+
+class MaquinaHistoricoView(RetrieveAPIView):
+    queryset = Maquina.objects.all()
+    serializer_class = MaquinaHistoricoSerializer
 
 
 class MaquinaEsvaziarView(CreateAPIView):

@@ -1,6 +1,8 @@
 from maquina.models import Endereco, Maquina
 from rest_framework import serializers
 
+from pagamento.serializers.pagamento import PagamentoSerializer
+
 
 class EnderecoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -38,6 +40,15 @@ class MaquinaSerializer(serializers.ModelSerializer):
         instance.save()
 
         return instance
+
+
+class MaquinaHistoricoSerializer(serializers.ModelSerializer):
+    pagamentos = PagamentoSerializer(many=True, source='pagamento_set')
+
+    class Meta:
+        model = Maquina
+        fields = ['pagamentos']
+        read_only_fields = fields
 
 
 class MaquinaEsvaziarSerializer(serializers.Serializer):
