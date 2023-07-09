@@ -42,14 +42,16 @@ class MaquinaSerializer(serializers.ModelSerializer):
 
 class MaquinaEsvaziarSerializer(serializers.Serializer):
     id = serializers.SlugRelatedField(queryset=Maquina.objects.all(), slug_field='id')
+    tipos = serializers.MultipleChoiceField(choices=['AAA', 'AA', 'C', 'D', 'V9'], required=False)
 
     def save(self):
         maquina = self.validated_data['id']
-        maquina.quantidade_AAA = 0
-        maquina.quantidade_AA = 0
-        maquina.quantidade_C = 0
-        maquina.quantidade_D = 0
-        maquina.quantidade_V9 = 0
+
+        if not self.validated_data.get('tipos'):
+            self.validated_data['tipos'] = ['AAA', 'AA', 'C', 'D', 'V9']
+
+        for tipo in self.validated_data['tipos']:
+            setattr(maquina, f'quantidade_{tipo}', 0)
         maquina.save()
 
         return maquina.id
