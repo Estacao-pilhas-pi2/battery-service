@@ -1,3 +1,4 @@
+import os
 import json
 
 from decouple import config
@@ -17,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY', default='not avaliable')
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "0.0.0.0", ".vercel.app"]
 
 LOCAL_APPS = [
     'usuario',
@@ -108,7 +109,12 @@ PHONENUMBER_DEFAULT_REGION = 'BR'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-STATIC_URL = config('STATIC_URL', default='/static/')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles', 'static')
+STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles', 'media')
+MEDIA_URL = '/media/'
 
 # Storage
 # DEFAULT_FILE_STORAGE = 'storages.backends.azure_storage.AzureStorage' if ENV == 'Production' else 'django.core.files.storage.FileSystemStorage'
@@ -120,10 +126,6 @@ STORAGES = {
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
-# AZURE_CONNECTION_STRING = config('AZURE_CONNECTION_STRING', '')
-# AZURE_CONTAINER = 'images'
-MEDIA_ROOT = 'media'
-MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'usuario.usuario'
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
